@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 
 const creatureSchema = new mongoose.Schema({
-    // userId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
     userId: {
-        type: Number,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     created: {
         type: String,

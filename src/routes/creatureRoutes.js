@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const requireAuth = require('../middleware/requireAuth');
 
-const Generic = mongoose.model('Creature');
+const Creature = mongoose.model('Creature');
 
 const router = express.Router();
 
 router.use(requireAuth);
 
 router.get('/creatures', async (req, res) => {
-    const creatures = await Creature.find({ userId: 999999 });
+    const creatures = await Creature.find({ userId: req.user._id });
 
     res.send(creatures);
 });
@@ -20,7 +20,7 @@ router.get('/mycreatures', async (req, res) => {
     res.send(creatures);
 });
 
-router.post('/creatures', async (req, res) => {
+router.post('/creature', async (req, res) => {
     const { 
         name,
         size,
@@ -84,8 +84,8 @@ router.post('/creatures', async (req, res) => {
             actions,
             reactions,
             notes,
-            // userId: req.user._id,
-            userId: 999999,
+            userId: req.user._id,
+            // userId: 999999,
             created: new Date().toISOString()
         });
         await creature.save();

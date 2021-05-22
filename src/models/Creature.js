@@ -66,12 +66,12 @@ const creatureSchema = new mongoose.Schema({
         required: true
     },
     savingThrows: {
-        type: String,
+        type: Array,
         required: false
     },
     skills: {
         type: Array,
-        required: true
+        required: false
     },
     vulnerabilities: {
         type: Array,
@@ -87,7 +87,7 @@ const creatureSchema = new mongoose.Schema({
     },
     senses: {
         type: Array,
-        required: true
+        required: false
     },
     languages: {
         type: Array,
@@ -107,7 +107,7 @@ const creatureSchema = new mongoose.Schema({
     },
     actions: {
         type: Array,
-        required: true
+        required: false
     },
     reactions: {
         type: Array,

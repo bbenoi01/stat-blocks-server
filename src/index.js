@@ -1,10 +1,12 @@
 require('./models/User');
 require('./models/Creature');
+require('./models/Campaign');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const creatureRoutes = require('./routes/creatureRoutes');
+const campaignRoutes = require('./routes/campaignRoutes');
 const requireAuth = require('./middleware/requireAuth');
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(authRoutes);
 app.use(creatureRoutes);
+app.use(campaignRoutes);
 
 mongoUri = 'mongodb+srv://admin:origin123@cluster0.a4jbb.mongodb.net/stat-blockdb?retryWrites=true&w=majority'; // Connection string from MongoDB Atlas Example:(mongodb+srv://admin:<password>@cluster0.3tx5j.mongodb.net/<dbname>?retryWrites=true&w=majority)
 mongoose.connect(mongoUri, {

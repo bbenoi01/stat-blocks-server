@@ -91,7 +91,7 @@ router.post('/creature', async (req, res) => {
         await creature.save();
         res.send(creature);
     } catch (err) {
-        res.status.send({ error: err.message });
+        return res.status.send({ error: err.message });
     }
 });
 

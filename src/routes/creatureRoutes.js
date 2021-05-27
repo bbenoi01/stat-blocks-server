@@ -47,6 +47,7 @@ router.post('/creature', async (req, res) => {
         experiencePoints,
         traits,
         actions,
+        legendaryActions,
         reactions,
         notes
     } = req.body;
@@ -82,6 +83,7 @@ router.post('/creature', async (req, res) => {
             experiencePoints,
             traits,
             actions,
+            legendaryActions,
             reactions,
             notes,
             userId: req.user._id,

@@ -109,6 +109,10 @@ const creatureSchema = new mongoose.Schema({
         type: Array,
         required: false
     },
+    legendaryActions: {
+        type: Array,
+        required: false
+    },
     reactions: {
         type: Array,
         required: false

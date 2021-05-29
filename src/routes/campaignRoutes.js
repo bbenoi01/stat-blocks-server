@@ -29,7 +29,8 @@ router.post('/campaign', async (req, res) => {
             created: new Date().toISOString()
         });
         await campaign.save();
-        res.send(campaign);
+        const myCampaigns = await Campaign.find({ userId: req.user._id });
+        res.send(myCampaigns);
     } catch (err) {
         res.status(400).send({ error: err.message });
     }

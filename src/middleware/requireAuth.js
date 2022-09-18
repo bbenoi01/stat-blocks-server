@@ -2,25 +2,26 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
-// JWT verification
+module.exports = (req, res, next) => {
+	const { authorization } = req.headers;
 
-module.exports = ( req, res, next) => {
-    const { authorization } = req.headers;
+	if (!authorization) {
+		return res.status(401).json('You must be logged in.');
+	}
 
-    if (!authorization) {
-        return res.status(401).send({ error: 'You must be logged in.' });
-    }
-
-    const token = authorization.replace('Bearer ', '');
-    jwt.verify(token, 'MY_SECERET_KEY', async (err, payload) => {
-        if (err) {
-            return res.status(401).send({ error: 'You must be logged in.' });
-        }
-
-        const { userId } = payload;
-
-        const user = await User.findById(userId);
-        req.user = user;
-        next();
-    });
+	try {
+		const token = authorization.replace('Bearer ', '');
+		if (token) {
+			jwt.verify(token, process.env.DB_SECRET_KEY, async (err, payload) => {
+				const { userId } = payload;
+				const user = await User.findById(userId).select('-password');
+				req.user = user;
+				next();
+			});
+		} else {
+			return res.status(401).json('You must be logged in.');
+		}
+	} catch (err) {
+		return res.status(401).json('You must be logged in.');
+	}
 };

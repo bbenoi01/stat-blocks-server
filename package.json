@@ -1,19 +1,25 @@
 {
-  "name": "stat-blocks",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.2"
-  }
+	"name": "stat-blocks",
+	"version": "1.0.0",
+	"engines": {
+		"node": "16.13.1",
+		"npm": "8.15.1"
+	},
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node src/index.js",
+		"dev": "nodemon src/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.2",
+		"express": "^4.17.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.2.0"
+	}
 }
